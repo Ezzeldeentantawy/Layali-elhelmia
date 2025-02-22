@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="icon" type="image/x-png" href="../static/images/main-img/logo.png">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Layali Elhelmia cart</title>
+</head>
+<body>
+    <div class="shoppingCart">
+      <p class='shoppingCartP'>سلة التسوق الخاصة بك</p>
+      <div class="summary" id="summary">
+        {{ meals | safe }}
+      </div>
+      <div class="total">
+        <div class="delivery">
+          <p>التوصيل</p>
+          <p>10</p>
+        </div>
+        <div class="delivery"> 
+          <p>الإجمالي</p>
+          <p id="totalPrice">0</p> <!-- total price {{total_price}}-->
+        </div>
+      </div>
+    </div>
+    <!-- start form -->
+    <p class="formTitle">البيانات الشخصية</p>
+     <div class="form">
+       <form class="userform" method="post" action="" id="userform">
+         <input type="hidden" name="total_price" id="total_price">
+         {% csrf_token %}
+         <div class="form-1">
+          <div class="input userNameinput ">
+            <label>الاسم</label>
+            <input type="text" name="username" required>
+          </div>
+           <div class="input city">
+            <label for="">المدينة</label>
+            <input type="text" name="city" required>
+           </div>
+         </div>
+         <div class="form-2">
+          <div class="input phoneNum">
+            <label for="">رقم التواصل</label>
+            <input type="text" name="phone_number" id="phone_number" maxlength="12" required>
+          </div>
+          <div class="input street">
+            <label for="">اسم الشارع</label>
+            <input type="text" name="street_name" required>
+          </div>
+         </div>
+         <div class="form-3">
+          <div class="input email">
+            <label for="">الايميل</label>
+            <input type="email" name="email" required>
+          </div>
+           <div class="input houseNum">
+            <label for="">رقم المنزل</label>
+            <input type="text" name="home_num" id="home_num" required>
+          </div>
+        </div>
+        <div class="submit">
+          <input type="hidden" id="ordercontent" name="ordercontent">
+          <button class="submitBtn" type="button" onclick="submitorder()">تأكيد</button>
+          <button class="backBtn" onclick="backMenu()">رجوع</button>
+        </div>
+       </form>
+     </div>
+    <!-- end form -->
+    <!-- <script src="{% static 'js/index.js' %}"></script> -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      function formatPhoneNumber(value) {
+     // Remove all non-digit characters
+     value = value.replace(/\D/g, '');
+     // Format the number as 00 000 0000
+     if (value.length > 2) {
+       value = value.replace(/(\d{2})(\d{0,3})(\d{0,4})/, '$1 $2 $3');
+     }
+     return value.trim();
+   }
+
+   document.getElementById('phone_number').addEventListener('input', function(e) {
+     e.target.value = formatPhoneNumber(e.target.value);
+   });
+   document.getElementById('home_num').addEventListener('input', function(e) {
+     e.target.value = e.target.value.replace(/\D/g, '');
+   });
+      function submitorder() {
+    // Get the content of all menuMeals divs
+    var menuMealsDivs = document.querySelectorAll('.menuType');
+    var total_price = document.getElementById('totalPrice');
+    var menuMealsContent = '';
+    var optionvalue = '';
+    menuMealsDivs.forEach(function(div) {
+        menuMealsContent += div.innerHTML;
+        var selectElement = div.querySelector('select');
+        if (selectElement) {
+            optionvalue += `<p class='optionsvalue'>${selectElement.options[selectElement.selectedIndex].id}</p>`;
+        }
+      });
+      menuMealsContent += optionvalue
+      // Set the content to the hidden input field
+    document.getElementById('ordercontent').value = menuMealsContent;
+    document.getElementById('total_price').value = total_price.innerText;
+    document.getElementById('userform').submit();
+
+}
+function backMenu() {
+  window.location.href = "/menu";
+}
+    </script>
+</body>
+</html>

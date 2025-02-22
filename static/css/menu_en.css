@@ -1,0 +1,711 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+:root {
+    --main-color : #f1f1f1 ;
+    --primary-color : #c1c1c1 ;
+    --secondary-color : #ad3735;
+}
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: "IBM Plex Sans", serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: white;
+    text-transform: capitalize;
+}
+.category {
+    width: 100%;
+    height: 50%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.menus-container {
+    margin-right: 5%;
+    width: 45%;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-color);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 2px solid var(--secondary-color) ;
+}
+[id="category-Super market sandwich | سندوتشات البقالة (عيش صمون)"] .menuType  select{
+   display: none;
+}
+[id="menus-container-Drinks | المشروبات"] .menuType  select{
+   display: none;
+}
+[id="category-Drinks | المشروبات"] img{
+   display: none;
+}
+[id="category-Drinks | المشروبات"] {
+   display:flex;
+   justify-content: center;
+   align-items: center;
+}
+[id="menus-container-Drinks | المشروبات"] {
+    width: 35%;
+    margin: 0;
+}
+[id="menus-container-Desserts | حلويات"] .menuType select{
+   display: none;
+}
+ .menuTitle {
+    font-weight: bold;
+    font-size: 29px; 
+    margin-bottom: 0%;
+}
+.menuImg {
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10%;
+}
+.exploreTitleDiv {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid var(--primary-color);
+}
+.exploreTitle {
+    color: black;
+    font-size: 50px ;
+    margin-bottom: 0;
+}
+.exploreDiv {
+    width : 100% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 30vh;
+}
+.exploreBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    height: 50%;
+}
+.exploreBtn button {
+    background-color: var(--primary-color);
+    border-radius: 30px;
+    width: 13.5%;
+    height: 60%;
+    font-size: 30px;
+}
+.exploreBtn button a {
+    text-decoration: none;
+    color: unset;
+}
+.exploreBtn button:hover {
+    background-color: var(--secondary-color);
+    border-radius: 30px;
+    width: 13.5%;
+    height: 60%;
+    font-size: 30px;
+}
+.types {
+    margin-top: 8%;
+    margin-bottom: 0%;
+    font-size: 26px;
+}
+.menuType p:first-child{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 24px;
+    width: 50%;
+    margin-right: 0%;
+    color: #363636;
+    word-wrap: break-word;
+    white-space: normal;
+}
+.mealname {
+    height: 10vh;
+}
+.menu p:last-child {
+    margin-bottom: 0%;
+}
+.menuMeals p:last-child {
+    margin-bottom: 0px;
+}
+.menuMeals {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2%;
+}
+.btnContainer {
+    display: flex;
+    height: 3.5vh;
+    width: 7vw;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: white;
+    border-radius: 50px;
+    margin-right: auto;
+}
+.btnContainer button {
+    background-color: unset;
+    border: none;
+}
+.value p{
+    font-size: 18px;
+}
+.menuType {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    max-height: 20vh;
+}
+select{
+    display: flex;
+    flex-direction: row ;
+    justify-content: center;
+    border: none;
+    border-radius: 50px;
+    width: fit-content;
+    font-size: 16px;
+    margin-right: auto;
+}
+.price {
+    margin: 0;
+    margin-right: auto;
+    padding-top: 0px;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 29px;
+    transition: color 0.3s;
+}
+.nav {
+    width: 100%;
+    height: 15vh;
+    background-color: var(--main-color);
+}
+.logo {
+    width: 25%;
+    height: 100%;
+}
+.logo img {
+    width : 40% ;
+    height: 100%;
+    object-fit: cover;
+}
+.navN {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width : 25% ;
+    font-size: 24px;
+}
+.cart {
+    width : 20% ;
+    height: 9vh;
+    color: white;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    border: none;
+    background-color: transparent; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+svg {
+    color: white;
+    width: 45px;
+    height: 45px;
+}
+.cart a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header {
+    position: relative; /* Ensure the header is positioned relative for the pseudo-element */
+    height: 85vh;
+    width: 100%;
+    background-image: url(/static/images/main-img/main-menu-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10% 0 0 10%;
+}
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.04); /* Red filter with 50% opacity */
+    z-index: 1; /* Ensure the overlay is on top */
+}
+h1 {
+    margin-top: 0;
+    margin-bottom: 10%;
+    color: white;
+    font-size: 70px;
+    z-index: 2; /* Ensure the text is above the overlay */
+}
+.searchBox {
+    position: relative;
+    width: 30%;
+    height: 15%;
+    opacity: 70%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 2; /* Ensure the search box is above the overlay */
+}
+
+.searchBox input {
+    height: 100%;
+    width: 100%;
+    padding-right: 0px;
+    border-radius: 10px;
+    border: none; 
+    direction: rtl;
+    padding-right: 50px;
+    padding-top: 15px;/* Add padding to make space for the icon */
+}
+.searchBox input::placeholder {
+    text-align: right;
+    font-size: 26px; /* Align placeholder text to the right */
+}
+.searchIcon {
+    position: absolute;
+    pointer-events: none;
+    z-index: 100; /* Allow clicks to pass through the icon */
+}
+.sliderIcon {
+    position: absolute;
+    color: var(--primary-color);
+    pointer-events: none;
+    width: 40px;
+    height: 40px;
+    margin-right: 85%;
+    border-right: 2px solid var(--primary-color);
+}
+.shoppingCart{
+    width: 90%;
+    margin: 0 5%;
+    padding: 0 5% ;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    background-color: var(--main-color);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+}
+.shoppingCartP , .formTitle{
+    direction: rtl;
+    width: 40%;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 26px;
+} 
+.formTitle {
+    margin-left: auto;
+    margin-right: 8%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.form {
+    width: 90%;
+    height: 60vh;
+    margin: 0 5%;
+    padding: 0 5% ;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--main-color);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+}
+.userform {
+    padding-top: 5%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.form-1, .form-2, .form-3 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+    border-top: 2px solid var(--secondary-color);
+    width: 80%;
+    font-size: 20px;
+}
+.delivery {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 100% ;
+    padding-left: 30px;
+}
+.summary {
+    width: 90%;
+}
+.input {
+    direction: ltr;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form input {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255);
+    height: 60%;
+    width: 75%;
+}
+form label {
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.submit {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.submitBtn {
+    width: 15%;
+    height: 60%;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    font-size: 24px;
+    margin-left: 5%;
+}
+.backBtn { 
+    width: 15%;
+    height: 60%;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    font-size: 24px;
+}
+.nextBtnDiv {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.nextBtn {
+    background-color: var(--secondary-color) ;
+    width: 15%;
+    height: 100%;
+    border-radius: 20px;
+    font-size: 30px;
+}
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+    .menuImg {
+        width: 400px;
+        height: 400px;
+        margin: 0;
+        margin-top: 15px;
+        padding: 0;
+    }
+    .navN {
+        width: 50%;
+    }
+    ul li a {
+        font-size: 28px;
+    }
+    .nav {
+        width: 100%;
+    }
+    .cart{
+        width: 30%;
+        height: 100%;
+    }
+    svg {
+        width : 60px ;
+        height: 100px;
+    }
+    .logo {
+        width :30% ;
+    }
+    .logo img {
+        width :90% ;
+        height : 90% ;
+    }
+    ul {
+        padding-left : 10px ;
+        justify-content: space-between;
+    }
+    header h1 {
+        margin-bottom: 10%;
+        font-size: 45px;
+    }
+    .searchBox {
+        width: 70%;
+        height: 10%;
+    }
+    .exploreTitle {
+        font-size: 35px;
+    }
+    .exploreBtn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+    .exploreBtn button {
+        background-color: var(--primary-color);
+        border-radius: 30px;
+        width: 35%;
+        height: 50%;
+        font-size: 30px;
+        margin-left: 10px;
+        display: flex;
+        flex: 0 0 auto;
+    }
+    .exploreBtn button:hover {
+        background-color: var(--secondary-color);
+        border-radius: 30px;
+        width: 35%;
+        height: 60%;
+        font-size: 30px;
+        display: flex;
+        flex: 0 0 auto;
+    }
+  .category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0%;
+  }
+  .menus-container {
+    width: 90%;
+    margin: 0 5%;
+    margin-top: 15px;
+    border-radius: 10px;
+  }
+  .menuType p:first-child{
+    font-size: 24px;
+    width: 35%;
+    margin-left: 0%;
+  }
+  .btnContainer {
+    width: 25%;
+  }
+  select {
+    width: fit-content;
+  }
+}
+@media screen and (max-width: 767px) {
+    .menuImg {
+        width: 300px;
+        height: 300px;
+        margin: 0;
+        margin-top: 15px;
+        padding: 0;
+    }
+    .navN {
+        width: 60%;
+    }
+    ul li a {
+        font-size: 16px;
+    }
+    .nav {
+        width: 100%;
+    }
+    .cart{
+        width: 30%;
+        height: 120%;
+    }
+    svg {
+        width : 30px ;
+        height: 60px;
+    }
+    .logo {
+        width :30% ;
+    }
+    .logo img {
+        width :100% ;
+        height : 100% ;
+    }
+    ul {
+        padding-left : 10px ;
+        justify-content: space-between;
+    }
+    header h1 {
+        margin-bottom: 10%;
+        font-size: 30px;
+    }
+    .searchBox {
+        width: 70%;
+        height: 10%;
+    }
+    .exploreTitle {
+        font-size: 24px;
+    }
+    .exploreBtn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+    .exploreBtn button {
+        background-color: var(--primary-color);
+        border-radius: 30px;
+        width: 45%;
+        height: 50%;
+        font-size: 30px;
+        margin-left: 10px;
+        display: flex;
+        flex: 0 0 auto;
+    }
+    .exploreBtn button:hover {
+        background-color: var(--secondary-color);
+        border-radius: 30px;
+        width: 45%;
+        height: 60%;
+        font-size: 30px;
+        display: flex;
+        flex: 0 0 auto;
+    }
+  .category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0%;
+  }
+  .menus-container {
+    width: 100%;
+    margin: 0;
+    margin-top: 15px;
+    border-radius: 10px;
+  }
+  .menuType p:first-child{
+    font-size: 18px;
+    width: 35%;
+    margin-left: 0%;
+  }
+  .btnContainer {
+    width: 25%;
+  }
+  select {
+    width: fit-content;
+  }
+  .nextBtn {
+    width: 60%;
+  }
+  .form-1, .form-2, .form-3 {
+    flex-direction: column;
+  }
+  .input {
+    width: 100%;
+  }
+  .form {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+  }
+  .shoppingCart {
+    width: 100%;
+    padding: 0;
+    padding-right: 5px;
+    margin: 0;
+    border-radius: 10px;
+  }
+  .shoppingCartP  {
+    width: 50%;
+    font-size: 20px;
+  }
+  .formTitle {
+    margin-right: auto;
+    margin-left: 0;
+  }
+  form label {
+    font-size: 20px;
+  }
+  .submitBtn {
+    width: 35%;
+  }
+  .backBtn {
+    width: 35%;
+  }
+}

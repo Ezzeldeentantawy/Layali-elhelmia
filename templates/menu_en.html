@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu_en.css' %}">
+    <link rel="icon" type="image/x-png" href="../static/media/images/main-img/logo.png">
+    <link rel="alternate" hreflang="ar" href="/menu/">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <title>Order Now from our delicious special dishes</title>
+</head>
+<body>
+    {% csrf_token%}
+    <!-- start of nav bar -->
+   <nav class="nav" id="nav">
+    <ul>
+      <li class="logo" id="logo"><img src="/static/images/main-img/logo.png" alt=""></li>
+      <div class="navN">
+        <li><a href="/menu/">AR</a></li>
+        <li><a href="../">Home page</a></li>
+        <li class="cart" id="cart">
+            <form id="cartForm" action="cart_en/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="menuMealsContent" id="menuMealsContent">
+                <button type="button" onclick="submitCartForm()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+                    </svg>
+                </button>
+            </form>
+        </li>
+      </div>
+    </ul>
+   </nav>
+   <!-- end of nav bar -->
+    <!-- start of header -->
+     <header>
+        <h1>layali Elhelmia Restaurant</h1>
+        <div class="searchBox">
+            <input onkeyup="searchData(this.value)" onkeydown="handleEnter(event)"type="text" class="search" id="search" placeholder="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c1c1c1" class="searchIcon"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c1c1c1" class="sliderIcon"><path d="M431.33-120v-230H498v82h342v66.67H498V-120h-66.67ZM120-201.33V-268h244.67v66.67H120Zm178-164v-81.34H120v-66.66h178V-596h66.67v230.67H298Zm133.33-81.34v-66.66H840v66.66H431.33Zm164-163.33v-230H662v81.33h178V-692H662v82h-66.67ZM120-692v-66.67h408.67V-692H120Z"/></svg>
+        </div>
+     </header>
+    <!-- end of header -->
+    <div class="exploreDiv">
+        <div class="exploreTitleDiv">
+            <h1 class="exploreTitle">explore our special meals</h1>
+        </div>
+        <div class="exploreBtn">
+            <button><a href="#category-Sweety Pie | فطير حلو">pies</a></button>
+            <button><a href="#category-popular | شعبيات">popular</a></button>
+            <button><a href="#category-Pizza | بيتزا">pizza</a></button>
+            <button><a href="#category-Super market sandwich | سندوتشات البقالة (عيش صمون)">sandwiches</a></button>
+            <button><a href="#category-Meat | اللحوم">meat</a></button>
+            <button><a href="#category-Desserts | حلويات">desserts</a></button>
+            <button><a href="#category-Drinks | المشروبات">drinks</a></button>
+        </div>
+    </div>
+    {% for category in categories%}
+     <!-- start of category -->
+     <div class="category" id="category-{{category}}">
+         <img class="menuImg" id="menuImg-{{category}}" src="{{category.image.url}}" alt="" loading="lazy">
+         <div class="menus-container" id="menus-container-{{category}}">
+             <div class="menu" id="menu-{{category}}">
+                 <p class="menuTitle" id="menuTitle-{{category}}">{{category.name_in_english}}</p>
+                </div>
+                <div class="menuMeals" id="menuMeals-{{category}}">
+                {% for meal in meals %}
+                {% if category == meal.category %}
+                <div class="menuType" id="{{meal.id}}">
+                    <p class="mealname">{{meal.name_in_english}}</p>
+                    <!-- {% if meal.description_in_english != '' %}
+                    <p>{{meal.description_in_english}}</p>
+                    {% endif %} -->
+                    <div class="btnContainer" id="btnContainer-{{category}}">
+                        <button onclick="increase(event, this)">+</button>
+                        <p class="count" id="count">0</p>
+                        <button onclick="decrease(event, this)">-</button>
+                    </div>
+                                                                <!-- this is value of option,this is prices ['26.00' , '31.00'], this is price id for price element in line 69-->
+                    <select name="" id="sizeSelect-{{category.name_in_english}}-{{meal.id}}" onchange="updatePrice('sizeSelect-{{category.name_in_english}}-{{meal.id}}',
+                     '{{meal.prices}}',
+                     'price-{{meal.name_in_english}}',
+                     )">
+                        {% for kind in category.kinds.all %}
+                        <!-- kinds options have قيم متغيرة -->
+                        <option class="kind" id="{{kind}}-{{meal.id}}" value="{{ forloop.counter0 }}">{{kind.name_in_english}}</option>
+                        {% endfor %}
+                    </select>
+                        <p class="price" id="price-{{meal.id}}">{{meal.defaultprice}}</p>
+                    </div>       
+                {% endif %}
+            {% endfor %}
+
+                </div>      
+            </div>
+        </div>
+    {% endfor %}
+        <!-- end of category -->
+        <form id="cartForm" action="cart_en/" method="post">
+            <div class="nextBtnDiv">
+                {% csrf_token%}
+                <input type="hidden" name="menuMealsContent" id="menuMealsContent">
+                <button class="nextBtn" type="button" onclick="submitCartForm()">Next</button>
+             </div>
+         </form>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="https://kit.fontawesome.com/e26af7f824.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

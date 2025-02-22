@@ -1,0 +1,149 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block content %}
+{{ block.super }}
+<!-- charts -->
+<div style="margin: 20px 0;">
+    <!-- First chart Sales over time  -->
+    <div>
+        <h2>Sales Over Time</h2>
+        <canvas id="salesChart"></canvas>
+    </div>
+    <!-- second chart order count over time -->
+    <div>
+        <h2>Order Count Over Time</h2>
+        <canvas id="ordersChart"></canvas>
+    </div>
+    <!-- top 5 meals chart -->
+    <div>
+        <h2>Top 5 Meals</h2>
+        <canvas id="topMealsChart"></canvas>
+    </div>
+    <!-- orders count over day -->
+    <div>
+        <h2>Orders per Hour</h2>
+        <canvas id="Orders-count-over-day"></canvas>
+    </div>
+    <!-- orders count over week -->
+    <div>
+        <h2>Orders per week</h2>
+        <canvas id="orders-count-over-week"></canvas>
+    </div>
+</div>
+
+<!-- Safely pass data to JavaScript -->
+{{ chart_labels|json_script:"chart-labels" }}
+{{ sales_amounts|json_script:"sales-amounts" }}
+{{ order_counts|json_script:"order-counts" }}
+{{ top_meal_sales|json_script:"top-meal-sales" }}
+{{ top_meal_names|json_script:"top-meal-labels" }}
+{{time_order_counts_label|json_script:"time-order-counts"}}
+{{time_order_count_sales|json_script:"time-order-counts-sales"}}
+{{weekly_order_counts_label|json_script:"weekly-order-counts-label"}}
+{{weekly_order_counts_sales|json_script:"weekly-order-counts-sales"}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Retrieve data from Django template
+    const chartLabels = JSON.parse(document.getElementById('chart-labels').textContent);
+    const salesData = JSON.parse(document.getElementById('sales-amounts').textContent);
+    const orderData = JSON.parse(document.getElementById('order-counts').textContent);
+    const topMealLabels = JSON.parse(document.getElementById('top-meal-labels').textContent);
+    const topMealSales = JSON.parse(document.getElementById('top-meal-sales').textContent);
+    const timeOrderCountsLabel = JSON.parse(document.getElementById('time-order-counts').textContent);
+    const timeOrderCountsSales = JSON.parse(document.getElementById('time-order-counts-sales').textContent);
+    const weeklyOrderCountsLabel = JSON.parse(document.getElementById('weekly-order-counts-label').textContent);
+    const weeklyOrderCountsSales = JSON.parse(document.getElementById('weekly-order-counts-sales').textContent);
+    // Sales Chart
+    const salesCtx = document.getElementById('salesChart');
+    new Chart(salesCtx, {
+        type: 'line',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Total Sales',
+                data: salesData,
+                borderColor: 'a3cce9',
+                tension: 0.1
+            }]
+        }
+    });
+
+    // Orders Chart
+    const ordersCtx = document.getElementById('ordersChart');
+    new Chart(ordersCtx, {
+        type: 'bar',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Number of Orders',
+                data: orderData,
+                backgroundColor: '#ffbc79',
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 1
+            }]
+        }
+    });
+
+    // Top Meals Chart
+    const topMealsCtx = document.getElementById('topMealsChart');
+    new Chart(topMealsCtx, {
+        type: 'pie',
+        data: {
+            labels: topMealLabels,
+            datasets: [{
+                data: topMealSales,
+                backgroundColor: [ '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Top 5 Meals'
+                }
+            }
+        }
+    });
+    
+    // Orders per Hour Chart
+    OrderOverDay = document.getElementById('Orders-count-over-day');
+    new Chart(OrderOverDay, {
+        // it is bar chart
+        type: 'bar',
+        data: {
+            // it also have labels
+            labels: timeOrderCountsLabel,
+            datasets: [{
+                label: 'Number of Orders',
+                data: timeOrderCountsSales,
+                backgroundColor: '#1170aa',
+                borderColor: 'rgb(75, 192, 192)',
+                borderWidth: 1
+            }]
+        },
+    })
+    
+    // Orders per Week Chart
+    OrderOverWeek = document.getElementById('orders-count-over-week');
+    new Chart(OrderOverWeek, {
+        // it is bar chart
+        type: 'bar',
+        data: {
+            // it also have labels
+            labels: weeklyOrderCountsLabel,
+            datasets: [{
+                label: 'Number of Orders',
+                data: weeklyOrderCountsSales,
+                backgroundColor: '#1170aa',
+                borderColor: 'rgb(75, 192, 192)',
+                borderWidth: 1
+            }]
+        },
+    })
+</script>
+{% endblock %}
